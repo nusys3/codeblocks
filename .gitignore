@@ -1,0 +1,38 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+
+# Virtual environments
+.venv/
+venv/
+env/
+
+# Local configuration and secrets
+.env
+.env.*
+!.env.example
+.github-credentials.env
+.github-credentials.env.*
+!.github-credentials.env.example
+.supabase-credentials.env
+.supabase-credentials.env.*
+!.supabase-credentials.env.example
+
+# OS and editor files
+.DS_Store
+.idea/
+.vscode/
+
+# Build artifacts
+build/
+dist/
+*.egg-info/
+
+# Local report inputs/outputs
+dart_report/*.pdf

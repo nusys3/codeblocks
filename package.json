@@ -1,0 +1,9 @@
+{
+  "name": "codeblocks-local-timeline",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "test:timeline": "node tests/timeline_data.test.mjs",
+    "serve:timeline": "python3 serve_timeline.py --no-browser"
+  }
+}

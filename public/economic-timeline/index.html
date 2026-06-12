@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>경제·투자 이벤트 타임라인</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="brand">
+      <span class="brand-mark">T</span>
+      <div>
+        <p class="eyebrow">Local market calendar</p>
+        <h1>경제·투자 이벤트 타임라인</h1>
+      </div>
+    </div>
+    <div class="header-actions">
+      <button id="downloadJson" class="ghost-button" type="button">JSON 내보내기</button>
+      <label class="ghost-button file-button" for="importJson">JSON 불러오기</label>
+      <input id="importJson" type="file" accept="application/json" hidden />
+    </div>
+  </header>
+
+  <main class="layout">
+    <aside class="taxonomy-panel" aria-label="주제별 보기">
+      <section class="panel-card intro-card">
+        <p class="eyebrow">KDI 시계열 구조를 응용</p>
+        <h2>주제분류별 찾기</h2>
+        <p>왼쪽에서 주제를 고르면 오른쪽에 연도순 타임라인과 상세 카드가 표시됩니다. 출처와 확정도를 함께 표시해 투자 일정의 신뢰도를 구분합니다.</p>
+      </section>
+
+      <section class="panel-card">
+        <h2>1단계 대분류</h2>
+        <div id="primaryTabs" class="topic-tabs"></div>
+      </section>
+
+      <section class="panel-card selector-grid">
+        <label>
+          2단계
+          <select id="secondarySelect"></select>
+        </label>
+        <label>
+          3단계
+          <select id="tertiarySelect"></select>
+        </label>
+      </section>
+
+      <section class="panel-card quick-filters">
+        <h2>빠른 필터</h2>
+        <label><input type="checkbox" value="confirmed" class="confidenceFilter" checked /> 확정</label>
+        <label><input type="checkbox" value="conditional" class="confidenceFilter" checked /> 조건부/예정</label>
+        <label><input type="checkbox" value="watch" class="confidenceFilter" checked /> 관찰/TBD</label>
+      </section>
+    </aside>
+
+    <section class="content-panel">
+      <div class="toolbar">
+        <div class="search-box">
+          <label for="searchInput">통합검색</label>
+          <input id="searchInput" type="search" placeholder="예: FOMC, SpaceX, 네마녀, Meta" />
+        </div>
+        <label>
+          연도
+          <select id="yearSelect"></select>
+        </label>
+        <label>
+          정렬
+          <select id="sortSelect">
+            <option value="asc">과거순</option>
+            <option value="desc">최신순</option>
+          </select>
+        </label>
+      </div>
+
+      <section class="summary-strip" aria-label="요약 지표">
+        <article><strong id="totalCount">0</strong><span>표시 이벤트</span></article>
+        <article><strong id="upcomingCount">0</strong><span>오늘 이후</span></article>
+        <article><strong id="confirmedCount">0</strong><span>확정 일정</span></article>
+        <article><strong id="watchCount">0</strong><span>관찰/TBD</span></article>
+      </section>
+
+      <section class="timeline-shell">
+        <div class="timeline-heading">
+          <div>
+            <p class="eyebrow">시계열 화면</p>
+            <h2 id="timelineTitle">전체 이벤트</h2>
+          </div>
+          <p id="lastUpdated" class="updated"></p>
+        </div>
+        <ol id="timeline" class="timeline" aria-live="polite"></ol>
+        <p id="emptyState" class="empty-state" hidden>조건에 맞는 시계열 내용이 없습니다.</p>
+      </section>
+    </section>
+  </main>
+
+  <dialog id="detailDialog" class="detail-dialog">
+    <button class="close-button" id="closeDialog" aria-label="상세 닫기">×</button>
+    <article id="detailContent"></article>
+  </dialog>
+
+  <script src="app-data.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
